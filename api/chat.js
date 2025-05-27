@@ -1,4 +1,3 @@
-// api/chat.js
 import { OpenAI } from 'openai';
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -35,7 +34,7 @@ export default async function handler(req, res) {
   try {
     const messages = [
       { role: 'system', content: SYSTEM_PROMPT },
-      ...(history || []).map(text => ({ role: 'user', content: text }),
+      ...(history || []).map(text => ({ role: 'user', content: text })),
       { role: 'user', content: message }
     ];
 
