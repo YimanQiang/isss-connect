@@ -2,371 +2,59 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
+  <title>欢迎来到 ISS Connect</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISSS Connect</title>
-  <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="https://www.washington.edu/wp-content/themes/be-boundless/favicon.ico?v=202406" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+      background: url('uw-iss-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      overflow: hidden;
+    }
+    .chatbot-btn {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      z-index: 100;
+      background: #4B2E83;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      box-shadow: 0 4px 16px rgba(60,7,100,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .chatbot-btn:hover {
+      background: #a78bfa;
+      color: #4B2E83;
+      transform: scale(1.08);
+    }
+    .chatbot-btn svg {
+      width: 38px;
+      height: 38px;
+    }
+  </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="navbar-left">
-      <img src="dawg.png" alt="logo" class="navbar-logo">
-      <span class="navbar-title">ISS Connect</span>
-    </div>
-    <div class="navbar-right">
-      <button class="newchat-btn"><svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:20px;height:20px;margin-right:6px;vertical-align:middle;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>New chat</button>
-      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar" class="navbar-avatar">
-    </div>
-  </nav>
-  <div class="container">
-    <!-- 左侧边栏 -->
-    <aside class="sidebar">
-      <div>
-        <div class="search-bar-wrapper">
-          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" /></svg>
-          <input type="text" placeholder="Search history/files" class="search-box">
-        </div>
-        <nav class="doc-nav">
-          <div class="nav-title">My Documents</div>
-          <button class="nav-btn"><svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 012-2h3.172a2 2 0 011.414.586l1.828 1.828A2 2 0 0012.828 8H19a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /></svg>OPT Documents</button>
-          <button class="nav-btn"><svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 012-2h3.172a2 2 0 011.414.586l1.828 1.828A2 2 0 0012.828 8H19a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /></svg>I-20 Documents & Transcript</button>
-          <button class="nav-btn"><svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 012-2h3.172a2 2 0 011.414.586l1.828 1.828A2 2 0 0012.828 8H19a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /></svg>My SEVIS Documents</button>
-        </nav>
-        <div class="history-section">
-          <div class="history-title">Chat History</div>
-          <ul id="chat-history-list" class="chat-history-list"></ul>
-        </div>
-      </div>
-      <div class="sidebar-bottom">
-        <a href="https://iss.washington.edu/meet-advisor/" class="book-btn" target="_blank">✨Book Appointment with ISS</a>
-      </div>
-    </aside>
-    <!-- 中间主区域 -->
-    <main class="main">
-      <!-- 欢迎区（初始显示） -->
-      <div id="welcome-section">
-        <div class="mascot">
-          <img src="dawg.png" alt="Dawg" class="mascot-img">
-          <div class="mascot-title">Hi, What can I help you with? 🐾</div>
-          <div class="mascot-desc">Your intelligent study abroad assistant</div>
-        </div>
-        <div class="category-grid">
-          <button class="category-btn" data-question="What is OPT and how do I apply for it?">
-            <span class="cat-title">OPT & CPT</span>
-            <span class="cat-desc">Work options during or after your studies</span>
-          </button>
-          <button class="category-btn" data-question="How do I maintain my F-1 visa status?">
-            <span class="cat-title">Visa & Status</span>
-            <span class="cat-desc">Stay in legal F-1 status while studying in the U.S.</span>
-          </button>
-          <button class="category-btn" data-question="How do I update or get my I-20 and other documents?">
-            <span class="cat-title">I-20 & Documents</span>
-            <span class="cat-desc">Manage your documents and updates</span>
-          </button>
-          <button class="category-btn" data-question="What do I need to know before traveling outside the U.S.?">
-            <span class="cat-title">Travel & Re-entry</span>
-            <span class="cat-desc">Know what you need before leaving the U.S.</span>
-          </button>
-          <button class="category-btn" data-question="What are my options after graduation?">
-            <span class="cat-title">Graduation & Beyond</span>
-            <span class="cat-desc">Options after you finish your program</span>
-          </button>
-          <button class="category-btn" data-question="How do I find jobs, housing, and insurance on campus?">
-            <span class="cat-title">Campus Life & Work</span>
-            <span class="cat-desc">Navigate jobs, housing, insurance, and life</span>
-          </button>
-        </div>
-      </div>
-      <!-- 聊天区（发送后显示） -->
-      <div id="chat-section" style="display:none;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;width:100%;">
-        <div id="chat-messages" class="chat-messages"></div>
-      </div>
-      <!-- 聊天输入框始终显示 -->
-      <div class="chat-input-area">
-        <input id="chat-input" type="text" placeholder="Ask anything" class="chat-input">
-        <button id="send-btn" class="send-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-7.5-15-7.5v6l10 1.5-10 1.5v6z" />
-          </svg>
-        </button>
-      </div>
-    </main>
-    <!-- 右侧链接栏 -->
-    <aside class="links-panel">
-      <div class="links-title">Recommended Links</div>
-      <div class="links-desc">Generated links of websites and documents will appear here</div>
-      <div id="links-panel-content" class="links-content">
-        <!-- 未来推荐链接展示区 -->
-      </div>
-    </aside>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script>
-    // 分类按钮点击交互
-    document.querySelectorAll('.category-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const question = this.getAttribute('data-question');
-        document.getElementById('chat-input').value = question;
-      });
-    });
-
-    // 聊天历史与多轮会话
-    let chatHistory = [];
-    let chatSessions = JSON.parse(localStorage.getItem('chatSessions') || '[]');
-    let currentSession = [];
-
-    function renderChatHistory() {
-      const list = document.getElementById('chat-history-list');
-      list.innerHTML = '';
-      chatSessions.forEach((session, idx) => {
-        const item = document.createElement('li');
-        item.className = 'chat-history-item';
-        item.textContent = session.summary;
-        item.title = session.summary;
-        // 删除按钮
-        const delBtn = document.createElement('button');
-        delBtn.className = 'history-del-btn';
-        delBtn.innerHTML = '🗑️';
-        delBtn.title = 'Delete this history';
-        delBtn.onclick = function(e) {
-          e.stopPropagation();
-          chatSessions.splice(idx, 1);
-          localStorage.setItem('chatSessions', JSON.stringify(chatSessions));
-          renderChatHistory();
-        };
-        item.appendChild(delBtn);
-        item.addEventListener('click', function() {
-          // 恢复该会话
-          document.getElementById('welcome-section').style.display = 'none';
-          document.getElementById('chat-section').style.display = 'flex';
-          document.querySelector('.main').classList.add('chatting');
-          const msgBox = document.getElementById('chat-messages');
-          msgBox.innerHTML = '';
-          session.messages.forEach(msg => {
-            // 外层包裹：头像+消息
-            const msgRow = document.createElement('div');
-            msgRow.className = 'msg-row ' + (msg.role === 'user' ? 'user' : 'bot');
-            // 头像
-            const avatar = document.createElement('img');
-            avatar.className = 'msg-avatar';
-            avatar.src = msg.role === 'user' ? 'https://randomuser.me/api/portraits/men/32.jpg' : 'dawg.png';
-            avatar.alt = msg.role === 'user' ? 'User' : 'ISS Connect';
-            msgRow.appendChild(avatar);
-            // 气泡内容
-            const div = document.createElement('div');
-            div.className = 'chat-bubble ' + (msg.role === 'user' ? 'user' : 'bot');
-            // 角色名
-            const roleDiv = document.createElement('div');
-            roleDiv.className = 'msg-role';
-            roleDiv.textContent = msg.role === 'user' ? 'User' : 'ISS Connect';
-            div.appendChild(roleDiv);
-            // 来源
-            if(msg.role === 'assistant') {
-              const fromDiv = document.createElement('div');
-              fromDiv.className = 'msg-from';
-              fromDiv.textContent = 'From: ISS Connect';
-              div.appendChild(fromDiv);
-            }
-            // 时间戳
-            if(msg.time) {
-              const timeDiv = document.createElement('div');
-              timeDiv.className = 'msg-time';
-              timeDiv.textContent = msg.time;
-              div.appendChild(timeDiv);
-            }
-            // 内容
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'msg-content';
-            if(msg.role === 'assistant') {
-              contentDiv.innerHTML = marked.parse(msg.content);
-            } else {
-              contentDiv.textContent = msg.content;
-            }
-            div.appendChild(contentDiv);
-            // 参考链接
-            if(msg.role === 'assistant') {
-              const links = extractLinks(msg.content);
-              if(links.length > 0) {
-                const refDiv = document.createElement('div');
-                refDiv.className = 'msg-links';
-                refDiv.innerHTML = 'References: ' + links.map(link => `<a href="${link}" target="_blank">${link}</a>`).join(' ');
-                div.appendChild(refDiv);
-              }
-            }
-            msgRow.appendChild(div);
-            msgBox.appendChild(msgRow);
-          });
-          msgBox.scrollTop = msgBox.scrollHeight;
-          currentSession = [...session.messages];
-          updateLinksPanel();
-        });
-        list.appendChild(item);
-      });
-    }
-
-    // 提取http/https链接
-    function extractLinks(text) {
-      const urlRegex = /(https?:\/\/[^\s)\]\["']+)/g;
-      return Array.from(new Set((text.match(urlRegex) || [])));
-    }
-
-    window.onload = function() {
-      renderChatHistory();
-    };
-
-    // 收集所有AI消息中的参考链接并展示到右侧栏
-    function updateLinksPanel() {
-      const linksPanel = document.getElementById('links-panel-content');
-      const linksDesc = document.querySelector('.links-desc');
-      // 收集所有AI消息中的链接
-      let allLinks = [];
-      (currentSession || []).forEach(msg => {
-        if(msg.role === 'assistant') {
-          allLinks = allLinks.concat(extractLinks(msg.content));
-        }
-      });
-      // 去重
-      allLinks = Array.from(new Set(allLinks));
-      if (allLinks.length > 0) {
-        linksPanel.innerHTML = allLinks.map(link => `<div class="right-link-item"><a href="${link}" target="_blank">${link}</a></div>`).join('');
-        if (linksDesc) linksDesc.style.display = 'none';
-      } else {
-        linksPanel.innerHTML = '';
-        if (linksDesc) linksDesc.style.display = '';
-      }
-    }
-
-    // 替换发送按钮交互
-    document.getElementById('send-btn').addEventListener('click', async function() {
-      const input = document.getElementById('chat-input');
-      const msgBox = document.getElementById('chat-messages');
-      if (input.value.trim()) {
-        // 切换到聊天区
-        document.getElementById('welcome-section').style.display = 'none';
-        document.getElementById('chat-section').style.display = 'flex';
-        document.querySelector('.main').classList.add('chatting');
-        // 显示用户消息
-        const userMsgRow = document.createElement('div');
-        userMsgRow.className = 'msg-row user';
-        const userAvatar = document.createElement('img');
-        userAvatar.className = 'msg-avatar';
-        userAvatar.src = 'https://randomuser.me/api/portraits/men/32.jpg';
-        userAvatar.alt = 'User';
-        userMsgRow.appendChild(userAvatar);
-        const userMsg = document.createElement('div');
-        userMsg.className = 'chat-bubble user';
-        // 角色名
-        const roleDiv = document.createElement('div');
-        roleDiv.className = 'msg-role';
-        roleDiv.textContent = 'User';
-        userMsg.appendChild(roleDiv);
-        // 时间戳
-        const timeDiv = document.createElement('div');
-        timeDiv.className = 'msg-time';
-        const now = new Date();
-        timeDiv.textContent = now.toLocaleTimeString();
-        userMsg.appendChild(timeDiv);
-        // 内容
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'msg-content';
-        contentDiv.textContent = input.value;
-        userMsg.appendChild(contentDiv);
-        userMsgRow.appendChild(userMsg);
-        msgBox.appendChild(userMsgRow);
-        msgBox.scrollTop = msgBox.scrollHeight;
-
-        // 发送到后端
-        const userInput = input.value;
-        chatHistory.push(userInput);
-        currentSession.push({ role: 'user', content: userInput, time: now.toLocaleTimeString() });
-        input.value = '';
-
-        // 显示"Thinking..."气泡
-        const botMsgRow = document.createElement('div');
-        botMsgRow.className = 'msg-row bot';
-        const botAvatar = document.createElement('img');
-        botAvatar.className = 'msg-avatar';
-        botAvatar.src = 'dawg.png';
-        botAvatar.alt = 'ISS Connect';
-        botMsgRow.appendChild(botAvatar);
-        const botMsg = document.createElement('div');
-        botMsg.className = 'chat-bubble bot';
-        // 角色名
-        const botRoleDiv = document.createElement('div');
-        botRoleDiv.className = 'msg-role';
-        botRoleDiv.textContent = 'ISS Connect';
-        botMsg.appendChild(botRoleDiv);
-        // 来源
-        const fromDiv = document.createElement('div');
-        fromDiv.className = 'msg-from';
-        fromDiv.textContent = 'From: ISS Connect';
-        botMsg.appendChild(fromDiv);
-        // 时间戳
-        const botTimeDiv = document.createElement('div');
-        botTimeDiv.className = 'msg-time';
-        botTimeDiv.textContent = now.toLocaleTimeString();
-        botMsg.appendChild(botTimeDiv);
-        // 内容
-        const botContentDiv = document.createElement('div');
-        botContentDiv.className = 'msg-content';
-        botContentDiv.textContent = 'Thinking...';
-        botMsg.appendChild(botContentDiv);
-        botMsgRow.appendChild(botMsg);
-        msgBox.appendChild(botMsgRow);
-        msgBox.scrollTop = msgBox.scrollHeight;
-
-        try {
-          const res = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: userInput, history: chatHistory.slice(0, -1) })
-          });
-          const data = await res.json();
-          // 内容
-          botContentDiv.innerHTML = marked.parse(data.reply || '[No response]');
-          // 参考链接
-          const links = extractLinks(data.reply || '');
-          let refDiv = botMsg.querySelector('.msg-links');
-          if (!refDiv && links.length > 0) {
-            refDiv = document.createElement('div');
-            refDiv.className = 'msg-links';
-            botMsg.appendChild(refDiv);
-          }
-          if (refDiv) {
-            refDiv.innerHTML = links.length > 0 ? 'References: ' + links.map(link => `<a href="${link}" target="_blank">${link}</a>`).join(' ') : '';
-          }
-          msgBox.scrollTop = msgBox.scrollHeight;
-          currentSession.push({ role: 'assistant', content: data.reply || '[No response]', time: new Date().toLocaleTimeString() });
-          updateLinksPanel();
-        } catch (e) {
-          botContentDiv.textContent = '[Error: ' + e.message + ']';
-        }
-      }
-    });
-
-    // 回车发送
-    document.getElementById('chat-input').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        document.getElementById('send-btn').click();
-      }
-    });
-
-    // New chat 按钮交互
-    document.querySelector('.newchat-btn').addEventListener('click', function() {
-      if (currentSession.length > 0) {
-        chatSessions.push({
-          summary: currentSession[0]?.content?.slice(0, 24) || 'New Chat',
-          messages: currentSession
-        });
-        localStorage.setItem('chatSessions', JSON.stringify(chatSessions));
-        renderChatHistory();
-      }
-      currentSession = [];
-      document.getElementById('chat-messages').innerHTML = '';
-      document.getElementById('welcome-section').style.display = 'flex';
-      document.getElementById('chat-section').style.display = 'none';
-      updateLinksPanel();
-    });
-  </script>
+  <!-- 右下角聊天机器人按钮 -->
+  <button class="chatbot-btn" title="进入 ISS Connect 聊天" onclick="window.location.href='chat.html'">
+    <!-- 聊天气泡SVG图标 -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6A8.38 8.38 0 0112.5 3a8.5 8.5 0 018.5 8.5z"/>
+    </svg>
+  </button>
 </body>
-</html> 
+</html>
