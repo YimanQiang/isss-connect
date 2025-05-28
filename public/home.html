@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>欢迎来到 ISS Connect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+      background: url('uw-iss-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      overflow: hidden;
+    }
+    .chatbot-btn {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      z-index: 100;
+      background: #4B2E83;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      box-shadow: 0 4px 16px rgba(60,7,100,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .chatbot-btn:hover {
+      background: #a78bfa;
+      color: #4B2E83;
+      transform: scale(1.08);
+    }
+    .chatbot-btn svg {
+      width: 38px;
+      height: 38px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 右下角聊天机器人按钮 -->
+  <button class="chatbot-btn" title="进入 ISS Connect 聊天" onclick="window.location.href='index.html'">
+    <!-- 聊天气泡SVG图标 -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6A8.38 8.38 0 0112.5 3a8.5 8.5 0 018.5 8.5z"/>
+    </svg>
+  </button>
+</body>
+</html>
